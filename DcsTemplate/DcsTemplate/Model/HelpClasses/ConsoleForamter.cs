@@ -20,7 +20,7 @@ namespace DcsTemplate.Model.HelpClasses
             }
             catch
             {
-                centerString = "Console to small!";
+                Console.Write("Console to small!");
                 Console.SetCursorPosition((Console.WindowWidth - centerString.Length) / 2, Console.CursorTop);
                 Console.Write(centerString);
                 Console.SetCursorPosition((Console.WindowWidth - 4), Console.CursorTop);

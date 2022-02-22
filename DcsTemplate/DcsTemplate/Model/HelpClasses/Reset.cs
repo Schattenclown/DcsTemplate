@@ -34,12 +34,12 @@ namespace DcsTemplate.Model.HelpClasses
             if (filePath.Contains("Debug"))
             {
                 filePath = WordCutter.RemoveAfterWord(filePath, "Debug", 0);
-                newFilepath = filePath + "Debug\\net6.0\\SchattenclownBot.exe";
+                newFilepath = filePath + "Debug\\net6.0\\DcsTemplate.exe";
             }
             else if (filePath.Contains("Release"))
             {
                 filePath = WordCutter.RemoveAfterWord(filePath, "Release", 0);
-                newFilepath = filePath + "Release\\net6.0\\SchattenclownBot.exe";
+                newFilepath = filePath + "Release\\net6.0\\DcsTemplate.exe";
             }
 
             Console.WriteLine("Sleeping for 60 seconds!");
