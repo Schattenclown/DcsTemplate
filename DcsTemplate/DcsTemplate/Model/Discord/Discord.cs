@@ -73,7 +73,7 @@ namespace DcsTemplate.Model.Discord
         public static CommandsNextExtension CNext { get; internal set; }
         public static InteractivityExtension INext { get; internal set; }
         public static CancellationTokenSource ShutdownRequest;
-        public static readonly ulong testguild = 881868642600505354;
+        public static readonly ulong devguild = 881868642600505354;
         public static string prefix = "bot/";
         public static bool custom = false;
         public static UserStatus customstatus = UserStatus.Streaming;
@@ -228,20 +228,13 @@ namespace DcsTemplate.Model.Discord
             cnext.CommandErrored += CNext_CommandErrored;
         }
 
-        /// <summary>
-        /// Registers the commands.
-        /// </summary>
-        /// <param name="cnext">The commands next extension.</param>
-        /// <param name="ac">The application commands extensions.</param>
-        private static void RegisterCommands(CommandsNextExtension cnext, ApplicationCommandsExtension ac)
+        private void RegisterCommands(CommandsNextExtension cnext, ApplicationCommandsExtension appCommands)
         {
-            cnext.RegisterCommands<Discord.Interaction.Main>();
-            ac.RegisterGuildCommands<Discord.Interaction.Slash>(testguild);
+            cnext.RegisterCommands<Discord.Interaction.Main>(); // Commands.Main = Ordner.Class
 #if DEBUG
-            ac.RegisterGuildCommands<Discord.Interaction.Slash>(testguild, perms =>
-            {
-                perms.AddRole(testguild, true);
-            });
+            appCommands.RegisterGuildCommands<Discord.Interaction.Slash>(devguild); // use to register on guild
+#else
+            appCommands.RegisterGlobalCommands<Discord.Interaction.Slash>(); // use to register global (can take up to an hour)
 #endif
         }
         #endregion
